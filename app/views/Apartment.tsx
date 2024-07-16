@@ -307,7 +307,7 @@ const styles = StyleSheet.create({
    intitule: {
       marginTop: 10,
       fontSize: 18,
-      fontWeight: "bold",
+      fontWeight: 900,
       color: colors.DARK,
       fontFamily: Fonts.regular,
       alignSelf: "flex-start",

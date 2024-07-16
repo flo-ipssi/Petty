@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
         borderWidth: 3,
         textAlign: "center",
         color: colors.DARK,
-        fontWeight:"700",
+        fontWeight:700,
         borderColor: colors.SECONDARY
     }
 });

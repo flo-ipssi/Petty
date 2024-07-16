@@ -17,7 +17,7 @@ const SubmitBtn: FC<Props> = props => {
     styleCustomContainer={styles.container}
     styleCustomTitle={{
       color: '#FFF',
-      fontWeight: '600'
+      fontWeight: 600
     }}
   />;
 };

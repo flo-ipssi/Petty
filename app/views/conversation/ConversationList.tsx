@@ -3,6 +3,7 @@ import {
     FlatList,
     ScrollView,
     StyleSheet,
+    Text,
     TouchableOpacity,
     View,
 } from "react-native";
@@ -15,11 +16,16 @@ import { useDispatch } from "react-redux";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import RessourceNotAvailable from "@/ui/RessourceNotAvailable";
 import client from "@/api/client";
+import { useNavigation } from "expo-router";
+import { NavigationProp } from "@react-navigation/native";
+import { MessagesInStackParamList } from "@/@types/navigation";
 
-const ConversationList = ({ navigation }) => {
+const ConversationList = () => {
+    const navigation = useNavigation<NavigationProp<MessagesInStackParamList>>();
+
     const dispatch = useDispatch();
     const [haveNewMessages, setHaveNewMessages] = useState(false);
-    const [conversations, setConversations] = useState();
+    const [conversations, setConversations] = useState([]);
 
     const handleNewPress = () => {
         setHaveNewMessages(true);
@@ -32,7 +38,7 @@ const ConversationList = ({ navigation }) => {
 
         const photo = item.petUploads
             .filter((item: { profil: boolean }) => item.profil == true)
-            .map((item) => item.file.url);
+            .map((item: { file: { url: any; }; }) => item.file.url);
 
         const petInfos = { infos: item.petInfo[0], photo }
         return (
@@ -64,7 +70,7 @@ const ConversationList = ({ navigation }) => {
                 setConversations(res.conversations);
             }
         } catch (error) {
-            dispatch(upldateNotification({ message: error, type: "error" }));
+            dispatch(upldateNotification({ message: error as  string, type: "error" }));
         }
     }
 
@@ -76,10 +82,10 @@ const ConversationList = ({ navigation }) => {
         <View style={styles.container}>
             <View style={styles.header}>
                 <TouchableOpacity style={styles.boutons}>
-                    Tous les messages
+                    <Text>Tous les messages</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.boutons}>
-                    Non lus
+                    <Text>Non lus</Text>
                     {haveNewMessages ? (
                         <View
                             style={{
@@ -96,7 +102,7 @@ const ConversationList = ({ navigation }) => {
                 </TouchableOpacity>
             </View>
             <ScrollView showsHorizontalScrollIndicator={false}>
-                {conversations?.length > 0 ? (
+                {conversations.length > 0 ? (
                     <FlatList
                         data={conversations}
                         renderItem={renderItem}

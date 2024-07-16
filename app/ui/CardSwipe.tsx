@@ -65,7 +65,7 @@ const CardSwipe: FC<Props> = ({ position, onPress, infos }) => {
                                     borderColor: "green",
                                     color: "green",
                                     fontSize: 32,
-                                    fontWeight: "800",
+                                    fontWeight: 800,
                                     padding: 10,
                                 }}
                             >
@@ -88,7 +88,7 @@ const CardSwipe: FC<Props> = ({ position, onPress, infos }) => {
                                     borderColor: "red",
                                     color: "red",
                                     fontSize: 32,
-                                    fontWeight: "800",
+                                    fontWeight: 800,
                                     padding: 10,
                                 }}
                             >

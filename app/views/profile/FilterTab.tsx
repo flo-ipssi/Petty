@@ -360,7 +360,7 @@ const styles = StyleSheet.create({
    },
    heading: {
       fontSize: 24,
-      fontWeight: "bold",
+      fontWeight: 900,
       marginBottom: 20,
    },
    button: {
@@ -372,7 +372,7 @@ const styles = StyleSheet.create({
    buttonText: {
       color: "#fff",
       fontSize: 16,
-      fontWeight: "bold",
+      fontWeight: 900,
    },
 });
 

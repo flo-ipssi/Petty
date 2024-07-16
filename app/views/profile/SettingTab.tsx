@@ -251,7 +251,7 @@ const styles = StyleSheet.create({
         marginTop: 15,
     },
     title: {
-        fontWeight: "bold",
+        fontWeight: 900,
         fontSize: 18,
         color: colors.SECONDARY,
     },
@@ -273,7 +273,7 @@ const styles = StyleSheet.create({
     },
     nameInput: {
         color: colors.DARK,
-        fontWeight: "bold",
+        fontWeight: 900,
         fontSize: 18,
         padding: 10,
         borderWidth: 0.5,

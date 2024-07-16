@@ -43,14 +43,14 @@ const styles = StyleSheet.create({
       },
       errorCode: {
         fontSize: 40,
-        fontWeight: 'bold',
+        fontWeight: 800,
         color: colors.GRAY,
       },
       errorMessage: {
         width:'80%',
         textAlign:'center',
         fontSize: 16,
-        fontWeight: 'bold',
+        fontWeight: 800,
         color: '#6B7280', 
         marginTop: 16, 
       }

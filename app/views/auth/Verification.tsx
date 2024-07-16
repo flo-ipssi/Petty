@@ -209,7 +209,7 @@ const styles = StyleSheet.create({
     },
     customTitleButton: {
         color: '#FFF',
-        fontWeight: '600'
+        fontWeight: 600
     },
     countDown: {
         color: colors.SECONDARY,
