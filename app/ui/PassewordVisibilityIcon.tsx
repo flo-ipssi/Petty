@@ -14,13 +14,16 @@ const PassewordVisibilityIcon: FC<Props> =  ({privateIcon, isWhite, customSize})
     const sizeCustom =customSize ? customSize : 15
     return (
         privateIcon ? 
-        <Icon name="eye" color={colorCustom} size={sizeCustom} /> : 
-        <Icon name="eye-with-line" color={colorCustom} size={sizeCustom} />
+        <Icon style={styles.container} name="eye" color={colorCustom} size={sizeCustom} /> : 
+        <Icon style={styles.container} name="eye-with-line" color={colorCustom} size={sizeCustom} />
     );
 };
 
 const styles = StyleSheet.create({
-   container:{}
+   container:{
+    top: -5,
+    right:20
+   }
 });
 
 export default PassewordVisibilityIcon;

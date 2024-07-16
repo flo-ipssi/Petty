@@ -1,8 +1,9 @@
 import React, { FC, ReactNode } from 'react';
-import { StyleSheet, SafeAreaView } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { useSelector } from 'react-redux';
 import { getAuthState } from '@/store/auth';
 import AppNotification from './AppNotification';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 interface Props {
    children: ReactNode;
@@ -11,34 +12,17 @@ interface Props {
 const AppContainer: FC<Props> = ({ children }) => {
    const { loggedIn } = useSelector(getAuthState);
 
-   return <SafeAreaView style={styles.container}>
-      <AppNotification /> 
-      {/* {loggedIn ?
-         (null
-         )
-         : null} */}
-      {children}
-   </SafeAreaView>
+   return (
+      <SafeAreaView style={styles.safeArea}>
+            <AppNotification />
+            {children}
+      </SafeAreaView>
+   );
 };
 
 const styles = StyleSheet.create({
-   container: {
-      flex: 1
-   },
-   buttonContainer: {
-      height: 50,
-      flexDirection: 'row',
-      backgroundColor:'transparent'
-   },
-   leftContainer: {
+   safeArea: {
       flex: 1,
-      justifyContent: 'center',
-      alignItems: 'center',
-   },
-   rightContainer: {
-      flex: 1,
-      justifyContent: 'center',
-      alignItems: 'center',
    },
 });
 

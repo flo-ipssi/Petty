@@ -23,31 +23,42 @@ petty est une application mobile permettant l'adoption d'animaux auprès de part
 ### Étapes d'installation
 
     1. **Clonez le dépôt
+
     ```bash
         git clone https://github.com/flo-ipssi/petty.git
         cd petty
-     ```
-    1. **Installez les dépendances**
+    ```
+
+    2. **Installez les dépendances**
+
     ```bash
         npm install 
-     ```
-    1. **Démarrez le serveur**
+    ```
+
+    3. **Démarrez le serveur**
+
     ```bash
         npm start
-     ```
-    1. **Lancez l'application sur un simulateur ou un appareil physique**
+    ```
+    
+    4. **Lancez l'application sur un simulateur ou un appareil physique**
+
     ```bash
         npx expo start
-     ```
+    ```
 
 ### Contribuer
 
 Les contributions sont les bienvenues ! Veuillez suivre les étapes ci-dessous pour contribuer :
 
     1. **Forkez le dépôt** 
+
     2. **Créez une branche de fonctionnalité (git checkout -b feature/NouvelleFonctionnalité)**
+    
     3. **Commitez vos changements (git commit -m 'Ajout de nouvelle fonctionnalité')**
+
     4. **Poussez votre branche (git push origin feature/NouvelleFonctionnalité)**
+    
     5. **Ouvrez une Pull Request**
 
 ### Licence

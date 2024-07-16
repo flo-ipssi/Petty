@@ -18,10 +18,11 @@ const styles = StyleSheet.create({
   input: {
     borderWidth: 2,
     borderColor: colors.DARK,
-    height: 45,
+    height: 35,
     borderRadius: 25,
     color: colors.DARK,
-    padding: 10,
+    padding: 8,
+    marginHorizontal:20,
     paddingHorizontal: 30,
     backgroundColor: "#ffffffc2"
   },

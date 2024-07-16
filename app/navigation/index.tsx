@@ -1,6 +1,6 @@
 import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
 import React, { FC, useEffect } from "react";
-import { StyleSheet, View } from "react-native";
+import { ImageBackground, StyleSheet, View } from "react-native";
 import AuthNavigator from "./AuthNavigator";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -70,20 +70,17 @@ const AppNavigator: FC<Props> = (props) => {
                 const token = await getFromAsyncStorage(Keys.AUTH_TOKEN);
                 if (!token) return;
 
-                const reponse = await fetch(
-                    client + "filter/update-filters",
-                    {
-                        method: "POST",
-                        headers: {
-                            "Content-Type": "application/json",
-                            "Access-Control-Allow-Origin": "*",
-                            Authorization: `Bearer ${token}`,
-                        },
-                    }
-                );
+                const reponse = await fetch(client + "filter/update-filters", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Access-Control-Allow-Origin": "*",
+                        Authorization: `Bearer ${token}`,
+                    },
+                });
 
                 const data = await reponse.json();
-                
+
                 dispatch(upldateFilter(data.filter));
             } catch (error) {
                 console.log("Filter error: " + error);
@@ -96,16 +93,17 @@ const AppNavigator: FC<Props> = (props) => {
     }, []);
 
     return (
-            <NavigationContainer theme={AppTheme} independent={true} 
-                
-             >
-                {busy ? (
-                    <View style={styles.loader}>
-                        <Loader />
-                    </View>
-                ) : loggedIn ? <TabNavigator /> : <AuthNavigator />}
-                
-            </NavigationContainer>
+        <NavigationContainer theme={AppTheme} independent={true}>
+            {busy ? (
+                <View style={styles.loader}>
+                    <Loader />
+                </View>
+            ) : loggedIn ? (
+                <TabNavigator />
+            ) : (
+                <AuthNavigator />
+            )}
+        </NavigationContainer>
     );
 };
 
