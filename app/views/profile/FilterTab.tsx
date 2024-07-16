@@ -7,6 +7,7 @@ import {
    TouchableOpacity,
    View,
    Alert,
+   ScrollView,
    ImageSourcePropType,
 } from "react-native";
 import AnimalCheckbox from "@/ui/AnimalCheckbox";
@@ -166,7 +167,7 @@ const FilterTab: FC<Props> = (props) => {
    }, [filters]);
 
    return (
-      <View style={styles.container}>
+      <ScrollView style={styles.container}>
          <View
             style={{
                flex: 1,
@@ -203,11 +204,7 @@ const FilterTab: FC<Props> = (props) => {
                />
             </View>
          </View>
-         <View
-            style={{
-               flex: 3,
-            }}
-         >
+         <View>
             <View style={styles.filterContainer}>
                <Text style={styles.label}>Je veux voir dans ces villes :</Text>
                <SelectMultiple
@@ -288,7 +285,7 @@ const FilterTab: FC<Props> = (props) => {
                />
             </View>
          </View>
-      </View>
+      </ScrollView>
    );
 };
 
@@ -298,6 +295,7 @@ const styles = StyleSheet.create({
       margin: 20,
       backgroundColor: "#FFF",
       padding: 20,
+      minHeight:120
    },
    photoIcon: {
       textAlign: "center",

@@ -143,34 +143,34 @@ const SettingTab: FC<Props> = (props) => {
     const handleTextChange = (inputText: React.SetStateAction<string>) => {
         setName(inputText);
         saveName(inputText);
-     };
+    };
     const saveName = useCallback(
         _.debounce(async (newName) => {
-           // Exemple d'appel API avec un token
-           const token = await getFromAsyncStorage(Keys.AUTH_TOKEN);
-           if (!token) return;
-  
-           try {
-              const res = await fetch(client + `profile/save/infos`, {
-                 method: "POST",
-                 headers: {
-                    "Content-Type": "application/json",
-                    "Access-Control-Allow-Origin": "*",
-                    Authorization: `Bearer ${token}`,
-                 },
-                 body: JSON.stringify({ newName: newName }),
-              });
-              const data = await res.json();
-              console.log("Name saved:", data);
-              
+            // Exemple d'appel API avec un token
+            const token = await getFromAsyncStorage(Keys.AUTH_TOKEN);
+            if (!token) return;
+
+            try {
+                const res = await fetch(client + `profile/save/infos`, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Access-Control-Allow-Origin": "*",
+                        Authorization: `Bearer ${token}`,
+                    },
+                    body: JSON.stringify({ newName: newName }),
+                });
+                const data = await res.json();
+                console.log("Name saved:", data);
+
                 dispatch(updateName(newName))
-              return data;
-           } catch (error) {
-              console.error("Error saving description", error);
-           }
+                return data;
+            } catch (error) {
+                console.error("Error saving description", error);
+            }
         }, 1000),
         []
-     );
+    );
     useEffect(() => {
         if (profile) {
             setName(profile.name)
@@ -181,7 +181,7 @@ const SettingTab: FC<Props> = (props) => {
     return (
         <View style={styles.container}>
             <View style={styles.titleContainer}>
-                <Text style={styles.title}>Profile Settings</Text>
+                <Text style={styles.title}>Paramètres</Text>
             </View>
 
             <View style={styles.settingOptionsContainer}>
@@ -201,14 +201,14 @@ const SettingTab: FC<Props> = (props) => {
                     </Pressable>
                 </View>
                 <TextInput
-               onChangeText={handleTextChange}
+                    onChangeText={handleTextChange}
                     style={styles.nameInput}
                     value={name}
                 />
             </View>
 
             <View style={styles.titleContainer}>
-                <Text style={styles.title}>Logout</Text>
+                <Text style={styles.title}>Déconnexion</Text>
             </View>
 
             <View style={styles.settingOptionsContainer}>
@@ -230,7 +230,7 @@ const SettingTab: FC<Props> = (props) => {
                 </TouchableOpacity>
                 <TouchableOpacity
                     onPress={() => handleDeleteAccount}
-                    style={[styles.button, styles.buttonColor,styles.deleteAccount, styles.logoutBtn]}
+                    style={[styles.button, styles.buttonColor, styles.deleteAccount, styles.logoutBtn]}
                 >
                     <Entypo name="trash" size={20} color={colors.INACTIVE_CONTRAST} />
                     <Text style={styles.logoutBtnTitle}>Supprimer le compte</Text>
@@ -249,6 +249,7 @@ const styles = StyleSheet.create({
         borderBottomColor: colors.SECONDARY,
         paddingBottom: 5,
         marginTop: 15,
+        marginHorizontal: 20
     },
     title: {
         fontWeight: 900,
@@ -257,7 +258,7 @@ const styles = StyleSheet.create({
     },
     settingOptionsContainer: {
         marginTop: 15,
-        paddingLeft: 15,
+        paddingHorizontal: 25,
     },
     avatarContainer: {
         flexDirection: "row",
@@ -273,8 +274,8 @@ const styles = StyleSheet.create({
     },
     nameInput: {
         color: colors.DARK,
-        fontWeight: 900,
-        fontSize: 18,
+        fontWeight: 700,
+        fontSize: 15,
         padding: 10,
         borderWidth: 0.5,
         borderColor: colors.DARK,
@@ -295,7 +296,7 @@ const styles = StyleSheet.create({
         alignItems: "center",
         marginTop: 15,
     },
-    deleteAccount:{
+    deleteAccount: {
         backgroundColor: colors.ERROR
     },
     logoutBtnTitle: {
@@ -303,7 +304,7 @@ const styles = StyleSheet.create({
         fontSize: 15,
         marginLeft: 5,
         marginRight: 5,
-        fontFamily:Fonts.bold
+        fontFamily: Fonts.bold
     },
     marginTop: {
         marginTop: 15,

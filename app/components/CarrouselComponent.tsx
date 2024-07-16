@@ -1,10 +1,5 @@
 import React from "react";
-import {
-  View,
-  Dimensions,
-  StyleSheet,
-  ImageBackground,
-} from "react-native";
+import { View, Dimensions, StyleSheet, Image } from "react-native";
 import { SwiperFlatList } from "react-native-swiper-flatlist";
 
 interface SlideData {
@@ -24,18 +19,16 @@ const CarrouselComponent: React.FC<CarouselProps> = ({ slideList }) => {
   return (
     <View style={styles.container}>
       <SwiperFlatList
-        // autoplay
-        // autoplayDelay={2}
         index={0}
         showPagination
         data={slideList}
         renderItem={({ item }) => (
           <View style={[styles.child]}>
-            <ImageBackground
-              source={item.file.url}
+            <Image
+              source={{ uri: item.file.url }}
               resizeMode="cover"
               style={styles.image}
-            ></ImageBackground>
+            />
           </View>
         )}
       />
@@ -48,7 +41,8 @@ const styles = StyleSheet.create({
   child: { width, height: height - 300, justifyContent: "center" },
   image: {
     flex: 1,
-    justifyContent: "center",
+    width: '100%',
+    height: '100%',
   },
 });
 

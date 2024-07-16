@@ -5,14 +5,15 @@ interface Props {
     onPress?(): void,
     imageSource?: ImageSourcePropType,
     stylesCustom?: object,
-    size?:number
+    size?: number
 }
 
-const RoundButtonWithImage: FC<Props> = ({ onPress, imageSource, stylesCustom,size }) => {
+const RoundButtonWithImage: FC<Props> = ({ onPress, imageSource, stylesCustom, size }) => {
     return (
         <TouchableOpacity onPress={onPress} style={[styles.button, stylesCustom]}>
-            <Image source={imageSource} style={ size ? {
-        width: size, height: size, resizeMode: 'contain'}:styles.image} />
+            <Image source={imageSource} style={size ? {
+                width: size, height: size, resizeMode: 'cover'
+            } : styles.image} />
         </TouchableOpacity>
     );
 };
@@ -21,7 +22,7 @@ const styles = StyleSheet.create({
     button: {
         width: 70,
         height: 70,
-        borderRadius: 50, // pour un bouton rond
+        borderRadius: 50,
         justifyContent: 'center',
         alignItems: 'center',
     },

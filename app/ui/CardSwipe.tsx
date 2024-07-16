@@ -4,10 +4,11 @@ import {
     View,
     Animated,
     Text,
-    ImageBackground,
+    Image,
     Dimensions,
     ImageSourcePropType,
     Pressable,
+    TouchableOpacity,
 } from "react-native";
 import colors from "@/utils/colors";
 import { Fonts } from "../utils/fonts";
@@ -21,7 +22,9 @@ interface Props {
     infos?: any;
 }
 
+
 const SCREEN_WIDTH = Dimensions.get("window").width;
+const SCREEN_HEIGHT = Dimensions.get("window").height;
 
 const CardSwipe: FC<Props> = ({ position, onPress, infos }) => {
     const likeOpacity = position?.x.interpolate({
@@ -43,10 +46,12 @@ const CardSwipe: FC<Props> = ({ position, onPress, infos }) => {
     const getTruncatedText = (text: string) => {
         return text.length < 10 ? text : `${text.substring(0, 10)}...`;
     };
-    
+
     return (
         <View style={styles.imageContainer} data-attri={infos._id}>
-            <ImageBackground source={profil} style={styles.imageBackground}>
+            <View style={styles.imageWrapper}>
+                
+                <Image source={{ uri: profil }} style={styles.imageBackground}  />
                 {position ? (
                     <>
                         <Animated.View
@@ -65,7 +70,7 @@ const CardSwipe: FC<Props> = ({ position, onPress, infos }) => {
                                     borderColor: "green",
                                     color: "green",
                                     fontSize: 32,
-                                    fontWeight: 800,
+                                    fontWeight: '800',
                                     padding: 10,
                                 }}
                             >
@@ -88,7 +93,7 @@ const CardSwipe: FC<Props> = ({ position, onPress, infos }) => {
                                     borderColor: "red",
                                     color: "red",
                                     fontSize: 32,
-                                    fontWeight: 800,
+                                    fontWeight: '800',
                                     padding: 10,
                                 }}
                             >
@@ -97,100 +102,80 @@ const CardSwipe: FC<Props> = ({ position, onPress, infos }) => {
                         </Animated.View>
                     </>
                 ) : null}
+                
+            <View style={styles.identity}>
+                <Pressable onPress={onPress}>
+                    <View style={{ flexDirection: "row" }}>
+                        <Text style={styles.title}>
+                            {infos.name}, {infos.age} ans
+                        </Text>
+                        {/* <View style={{ position: "absolute", right: 0 }}>
+                            <PassewordVisibilityIcon privateIcon={true} isWhite={true} customSize={25} />
+                        </View> */}
+                    </View>
 
-                {/* <Image
-      style={{ flex: 1, height: null, width: null, resizeMode: 'cover', borderRadius: 20 }}
-      source={item.url}
-   /> */}
-
-                <View style={styles.identity}>
-                    <Pressable onPress={onPress}>
-                        <View
-                            style={{
-                                flexDirection: "row",
-                            }}
-                        >
-                            <Text style={styles.title}>
-                                {infos.name}, {infos.age} ans
+                    <View style={styles.identityContainer}>
+                        {[
+                            { icon: "gender-female", text: infos.gender },
+                            { icon: "map-marker", text: infos.location },
+                            { icon: "paw", text: infos.breed },
+                        ].map(({ icon, text }) => (
+                            <Text style={styles.text} key={icon}>
+                                <MaterialCommunityIcons name={icon} size={15} />
+                                {getTruncatedText(text)}
                             </Text>
-                            <View
-                                style={{
-                                    position: "absolute",
-                                    right: 0,
-                                }}
-                            >
-                                <PassewordVisibilityIcon
-                                    privateIcon={true}
-                                    isWhite={true}
-                                    customSize={25}
-                                />
-                            </View>
-                        </View>
+                        ))}
+                    </View>
+                </Pressable>
+            </View>
+            </View>
 
-                        <View style={styles.identityContainer}>
-                            {[
-                                { icon: "gender-female", text: infos.gender },
-                                { icon: "map-marker", text: infos.location },
-                                { icon: "paw", text: infos.breed },
-                            ].map(({ icon, text }) => (
-                                <Text style={styles.text} key={icon}>
-                                    <MaterialCommunityIcons name={icon} size={15} />
-                                    {getTruncatedText(text)}
-                                </Text>
-                            ))}
-                        </View>
-                    </Pressable>
-                </View>
-            </ImageBackground>
         </View>
     );
 };
 
 const styles = StyleSheet.create({
-    imageBackground: {
+    imageContainer: {
         flex: 1,
-        resizeMode: "cover",
-        justifyContent: "center",
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    imageWrapper: {
+        width: SCREEN_WIDTH * 0.84,
+        height: SCREEN_HEIGHT * 0.68, // Adjust this as needed
+        borderRadius: 15,
+        overflow: 'hidden', // Ensure the children stay within the border radius
+        position: 'relative',
+    },
+    imageBackground: {
+        width: '100%',
+        height: '100%',
     },
     identity: {
-        backgroundColor: colors.OVERLAY,
-        position: "absolute",
+        position: 'absolute',
         bottom: 0,
-        width: "100%",
-        paddingHorizontal: 30,
-        paddingBottom: 20,
-        paddingTop: 10,
-    },
-    identityContainer: {
-        flexDirection: "row",
-        justifyContent: "space-between",
-        alignItems: "flex-start",
-        paddingVertical: 5,
+        left: 0,
+        right: 0,
+        backgroundColor: 'rgba(0, 0, 0, 0.5)',
+        borderRadius: 10,
+        padding: 10,
     },
     title: {
+        color: '#fff',
         fontSize: 18,
-        fontFamily: Fonts.regular,
-        color: "#ffffff",
+        fontFamily: Fonts.bold,
+    },
+    identityContainer: {
+        marginTop: 10,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
     },
     text: {
+        color: '#fff',
+        fontSize: 16,
+        
         textTransform: "capitalize",
-        fontSize: 17,
         fontFamily: Fonts.light,
-        color: "#ffffff",
-    },
-    imageContainer: {
-        width: "100%",
-        height: "100%",
-        overflow: "hidden",
-        borderRadius: 20,
-    },
-    poppins_medium: {
-        fontSize: 20,
-        fontFamily: "Poppins_500Medium",
-    },
-    poppins_light: {
-        fontSize: 20,
-        fontFamily: "Poppins_300Light",
     },
 });
 
