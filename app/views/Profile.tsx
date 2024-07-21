@@ -1,36 +1,54 @@
-import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import React, { useRef } from 'react';
+import { StyleSheet, View, ScrollView, Dimensions } from 'react-native';
 import colors from '@/utils/colors';
-import { createStackNavigator } from '@react-navigation/stack';
-import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import SettingTab from './profile/SettingTab';
 import FilterTab from './profile/FilterTab';
 
-interface Props { }
+import { createStackNavigator } from '@react-navigation/stack';
 
-const Tab = createMaterialTopTabNavigator();
+const { width } = Dimensions.get('window');
 
 const Profile = () => {
-
    const Stack = createStackNavigator();
+   //   const scrollViewRef = useRef(null);
 
    return (
-      <View style={styles.container}>
-         <Tab.Navigator
-            screenOptions={{
-               tabBarStyle: styles.tabbarStyle,
-               tabBarLabelStyle: styles.tabBarLabelStyle,
-            }}>
-            <Tab.Screen name="Filters" component={FilterTab} />
-            <Tab.Screen name="Setting" component={SettingTab} />
-         </Tab.Navigator>
-      </View>
-   )
+      //  <View style={styles.container}>
+
+      //    <ScrollView
+      //      ref={scrollViewRef}
+      //      horizontal
+      //      pagingEnabled
+      //      showsHorizontalScrollIndicator={false}
+      //      style={styles.scrollView}
+      //    >
+      //      <View style={[styles.page, { width }]}>
+      //        <FilterTab />
+      //         </View>
+      //      </ScrollView>
+      //      <View style={[styles.page, { width }]}>
+      //        <SettingTab />
+      //      </View>
+      //  </View>
+
+      <Stack.Navigator>
+         <Stack.Screen name="FilterTab" component={FilterTab} options={{ headerShown: false }} />
+         <Stack.Screen name="SettingTab" component={SettingTab} options={{ headerTitle: "Paramètres" }}  />
+      </Stack.Navigator>
+   );
 };
 
 const styles = StyleSheet.create({
    container: {
       flex: 1,
+   },
+   scrollView: {
+      flex: 1,
+   },
+   page: {
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
    },
    tabbarStyle: {
       backgroundColor: 'transparent',
@@ -43,7 +61,7 @@ const styles = StyleSheet.create({
    tabBarLabelStyle: {
       color: colors.DARK,
       fontSize: 12,
-   }
+   },
 });
 
 export default Profile;

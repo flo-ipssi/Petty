@@ -1,7 +1,6 @@
 import Slider from "@react-native-community/slider";
 import React, { FC, useEffect, useState } from "react";
 import {
-   Image,
    StyleSheet,
    Text,
    TouchableOpacity,
@@ -9,11 +8,13 @@ import {
    Alert,
    ScrollView,
    ImageSourcePropType,
+   Pressable 
 } from "react-native";
+import { Image } from 'expo-image';
 import AnimalCheckbox from "@/ui/AnimalCheckbox";
 import colors from "@/utils/colors";
 import { Fonts } from "@/utils/fonts";
-import MaterialIcons from "react-native-vector-icons/MaterialIcons";
+import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import { useDispatch, useSelector } from "react-redux";
 import { getAuthState } from "@/store/auth";
 import { Filter, getFilterState, upldateFilter } from "@/store/filter";
@@ -24,12 +25,16 @@ import * as ImagePicker from "expo-image-picker";
 import CustomModal from "@/components/CustomModal";
 import catchAsyncError from "@/api/catchError";
 import client from "@/api/client";
+import { useNavigation } from "expo-router";
 
-interface Props { }
+interface Props {
+   navigation:any
+ }
 
-const FilterTab: FC<Props> = (props) => {
+const FilterTab: FC<Props> = ({ navigation }) => {
    const gefilters = useSelector(getFilterState);
    const dispatch = useDispatch();
+
    const { profile } = useSelector(getAuthState);
    const [filters, setFilters] = useState<Filter>(gefilters);
    const [modalPhotoVisible, setModalPhotoVisible] = useState(false);
@@ -76,7 +81,7 @@ const FilterTab: FC<Props> = (props) => {
    };
 
    const uploadFile = async (uploadImg: { canceled?: false; assets: ImagePicker.ImagePickerAsset[]; uri?: any; }) => {
-            const asset = uploadImg.assets[0]; 
+      const asset = uploadImg.assets[0];
       const type = asset.type as string;
 
       // Change data to blob
@@ -167,7 +172,7 @@ const FilterTab: FC<Props> = (props) => {
    }, [filters]);
 
    return (
-      <ScrollView style={styles.container}>
+      <ScrollView>
          <View
             style={{
                flex: 1,
@@ -179,11 +184,13 @@ const FilterTab: FC<Props> = (props) => {
          >
             <View
                style={styles.imageBackground}
-            // source={require('../../assets/logos/no-label.png')}
             >
                <Image style={styles.image} source={avatar ?? { uri: '' }} />
                <View style={{ alignSelf: "center", padding: 3 }}>
                   <Text style={styles.title}>{profile?.name}</Text>
+                  <Pressable style={styles.buttonSetting} onPress={() => {navigation.navigate('SettingTab');}}>
+                     <Text style={styles.textSetting}>Parametres</Text>
+                  </Pressable>
                </View>
                <TouchableOpacity style={styles.editButton} onPress={() => setModalPhotoVisible(true)}>
                   <MaterialIcons
@@ -290,12 +297,24 @@ const FilterTab: FC<Props> = (props) => {
 };
 
 const styles = StyleSheet.create({
-   container: {},
+   buttonSetting: {
+      backgroundColor: colors.INACTIVE_CONTRAST,
+      padding: 10,
+      borderRadius: 5,
+      marginTop: 20,
+      textAlign: "center",
+      borderWidth:1
+   },
+   textSetting:{
+      textAlign: "center",
+      color: colors.DARK,
+      textTransform: "uppercase"
+   },
    filterContainer: {
       margin: 20,
       backgroundColor: "#FFF",
       padding: 20,
-      minHeight:120
+      minHeight: 120
    },
    photoIcon: {
       textAlign: "center",
@@ -341,8 +360,8 @@ const styles = StyleSheet.create({
    editButton: {
       position: "absolute",
       bottom: 70,
-      left: "70%",
-      top: "55%",
+      left: "65%",
+      top: "40%",
       right: 0,
       backgroundColor: "rgba(255,255,255, 1)",
       borderColor: colors.SECONDARY,

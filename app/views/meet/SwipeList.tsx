@@ -244,7 +244,7 @@ const SwipeList: FC<Props> = ({ navigation }) => {
         <View style={styles.itemButtonContainer}>
           <RoundButtonWithImage
             onPress={handlePressLeftButton}
-            imageSource={require("../../assets/logos/cross.png")}
+            imageSource={require("@/assets/logos/cross.png")}
             stylesCustom={{
               background: "linear-gradient(90deg, #ff3131, #ff914d)",
               alignSelf: "flex-end",
@@ -255,7 +255,7 @@ const SwipeList: FC<Props> = ({ navigation }) => {
         <View style={styles.itemButtonContainer}>
           <RoundButtonWithImage
             onPress={handlePressRightButton}
-            imageSource={require("../../assets/logos/paw-white.png")}
+            imageSource={require("@/assets/logos/paw-white.png")}
             stylesCustom={{
               background: "linear-gradient(90deg, #5de0e6, #004aad)",
               alignSelf: "flex-start",

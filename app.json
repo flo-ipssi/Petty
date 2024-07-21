@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "petty",
-    "slug": "petty",
+    "name": "my-app",
+    "slug": "my-app",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -19,35 +19,18 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      },
-      "package": "com.floipssi.petty"
+      }
     },
     "web": {
       "bundler": "metro",
       "output": "static",
-      "favicon": "./assets/images/favicon.png"
+      "favicon": "./assets/logos/logo.png"
     },
     "plugins": [
-      "expo-router",
-      "expo-font"
+      "expo-router"
     ],
     "experiments": {
-      "typedRoutes": true,
-      "tsconfigPaths": true
-    },
-    "extra": {
-      "router": {
-        "origin": false
-      },
-      "eas": {
-        "projectId": "c5d6cdbd-1bdf-433b-8aee-6f01061ccf5a"
-      }
-    },
-    "runtimeVersion": {
-      "policy": "appVersion"
-    },
-    "updates": {
-      "url": "https://u.expo.dev/c5d6cdbd-1bdf-433b-8aee-6f01061ccf5a"
+      "typedRoutes": true
     }
   }
 }

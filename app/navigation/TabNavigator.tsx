@@ -1,11 +1,11 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import Home from '@/views/Home';
-import Profile from '@/views/Profile';
-import Apartment from '@/views/Apartment';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import AntDesign from 'react-native-vector-icons/AntDesign';
-import Messages from '@/views/Messages';
+import Home from '@/app/views/Home';
+import Profile from '@/app/views/Profile';
+import Apartment from '@/app/views/Apartment';
+import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
+import AntDesign from '@expo/vector-icons/AntDesign';
+import Messages from '@/app/views/Messages';
 
 const Tab = createBottomTabNavigator();
 

@@ -5,16 +5,16 @@ import React, { FC, useEffect, useState } from "react";
 import {
   Button,
   FlatList,
-  Image,
   StyleSheet,
   Text,
   TextInput,
   View,
 } from "react-native";
+import { Image } from 'expo-image';
 import { Keys, getFromAsyncStorage } from "@/utils/asyncStorage";
 import { upldateNotification } from "@/store/notification";
 import { useDispatch, useSelector } from "react-redux";
-import { getAuthState, UserProfile } from "@/store/auth";
+import { getAuthState } from "@/store/auth";
 import client from "@/api/client";
 
 type Props = NativeStackScreenProps<MessagesInStackParamList, "Conversation">;
@@ -54,7 +54,7 @@ const Conversation: FC<Props> = ({ route }) => {
   async function sendMessage(message: string) {
     try {
       const token = await getFromAsyncStorage(Keys.AUTH_TOKEN);
-      if (!token) return;
+      if (!token || !profile) return;
       await fetch(client + `message/send`, {
         method: "POST",
         headers: {
@@ -148,7 +148,7 @@ const Conversation: FC<Props> = ({ route }) => {
   }, [conversationId]);
 
   return (
-    <View style={{ flex: 1, padding: 20, backgroundColor: "#FAFAFA" }}>
+    <View style={{ flex: 1, paddingHorizontal: 10, backgroundColor: "#FAFAFA" }}>
       <FlatList
         data={messages}
         renderItem={renderItem}

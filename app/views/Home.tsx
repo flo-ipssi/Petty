@@ -1,18 +1,25 @@
-import { createStackNavigator } from '@react-navigation/stack';
+import { createStackNavigator, StackNavigationProp } from '@react-navigation/stack';
+import { RouteProp } from '@react-navigation/native';
 import React, { FC } from 'react';
 import SwipeList from './meet/SwipeList';
 import PetDetails from './meet/PetDetails';
 
-interface Props { }
+interface PetDetailsScreenParams {
+  title: string;
+}
 
-const Stack = createStackNavigator();
-const Home: FC<Props> = props => {
+type RootStackParamList = {
+  SwipeList: undefined;
+  PetDetails: PetDetailsScreenParams;
+};
 
+const Stack = createStackNavigator<RootStackParamList>();
+
+const Home: FC = () => {
   return (
-    <Stack.Navigator
-    >
+    <Stack.Navigator>
       <Stack.Screen
-        options={{ headerShown: false, }}
+        options={{ headerShown: false }}
         name="SwipeList"
         component={SwipeList} />
       <Stack.Screen
@@ -22,8 +29,8 @@ const Home: FC<Props> = props => {
         })}
         name="PetDetails"
         component={PetDetails} />
-    </Stack.Navigator>)
+    </Stack.Navigator>
+  );
 };
-
 
 export default Home;

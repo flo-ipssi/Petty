@@ -8,14 +8,14 @@ import {
     updateBusyState,
     updateLoggedInState,
     updateProfile,
-} from "../store/auth";
+} from "@/store/auth";
 import TabNavigator from "./TabNavigator";
-import { Keys, getFromAsyncStorage } from "../utils/asyncStorage";
-import colors from "../utils/colors";
-import { upldateFilter } from "../store/filter";
-import Loader from "../ui/Loader";
-import catchAsyncError from "../api/catchError";
-import client from "../api/client";
+import { Keys, getFromAsyncStorage } from "@/utils/asyncStorage";
+import colors from "@/utils/colors";
+import { upldateFilter } from "@/store/filter";
+import Loader from "@/ui/Loader";
+import catchAsyncError from "@/api/catchError";
+import client from "@/api/client";
 
 interface Props { }
 

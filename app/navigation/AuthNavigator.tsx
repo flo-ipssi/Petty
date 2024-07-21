@@ -1,10 +1,10 @@
 import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { AuthStackParamList } from "@/@types/navigation";
-import LostPassword from "@/views/auth/LostPassword";
-import SignIn from "@/views/auth/SignIn";
-import SignUp from "@/views/auth/SignUp";
-import Verification from "@/views/auth/Verification";
+import LostPassword from "@/app/views/auth/LostPassword";
+import SignIn from "@/app/views/auth/SignIn";
+import SignUp from "@/app/views/auth/SignUp";
+import Verification from "@/app/views/auth/Verification";
 
 const Stack = createNativeStackNavigator<AuthStackParamList>()
  

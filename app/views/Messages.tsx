@@ -20,6 +20,9 @@ const Messages: FC<Props> = (props) => {
       </Stack.Group>
       <Stack.Group screenOptions={{ presentation: 'modal' }}>
         <Stack.Screen
+          options={({ route }) => ({
+            title: route.params?.title || 'Conversation',
+          })}
           name="Conversation"
           component={Conversation} />
       </Stack.Group>

@@ -13,7 +13,7 @@ import ConversationItem from "./ConversationItem";
 import { Keys, getFromAsyncStorage } from "@/utils/asyncStorage";
 import { upldateNotification } from "@/store/notification";
 import { useDispatch } from "react-redux";
-import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
+import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import RessourceNotAvailable from "@/ui/RessourceNotAvailable";
 import client from "@/api/client";
 import { useNavigation } from "expo-router";
@@ -45,7 +45,7 @@ const ConversationList = () => {
             <ConversationItem
                 data={item}
                 onClick={() =>
-                    navigation.navigate("Conversation", { conversationId: item._id, petInfos })
+                    navigation.navigate("Conversation", { conversationId: item._id, petInfos, title: item.petInfo[0].name })
                 }
             />
         );

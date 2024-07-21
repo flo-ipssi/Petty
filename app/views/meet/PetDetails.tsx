@@ -1,23 +1,26 @@
-import React from "react";
+import React, { FC } from "react";
 import {
   View,
   Text,
-  Image,
   StyleSheet,
   ScrollView,
   Dimensions,
 } from "react-native";
 import { Fonts } from "@/utils/fonts";
 import colors from "@/utils/colors";
-import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
+import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import RoundButtonWithImage from "@/ui/RoundButtonWithImage";
 import CarrouselComponent from "@/components/CarrouselComponent";
 import { useNavigation } from "@react-navigation/native";
+import { Image } from 'expo-image';
 
-interface Props { }
+interface Props {
+  route : any
+ }
+
 const { width: screenWidth } = Dimensions.get("window");
 
-const PetDetails = ({ route }) => {
+const PetDetails: FC<Props> = ({ route }) => {
   const { details } = route.params;
   const navigation = useNavigation();
 
@@ -36,7 +39,7 @@ const PetDetails = ({ route }) => {
 
   const getImageSource = (uploads: any[]) => {
     const profileImage = uploads.find((item: { profil: boolean; }) => item.profil);
-    return profileImage ? { uri: profileImage.file.url } : require('../../assets/1.jpg');
+    return profileImage ? { uri: profileImage.file.url } : require('@/assets/1.jpg');
   };
   console.log(details.user.uploads.filter((item: { profil: boolean; }) => item.profil)[0].file.url);
 
@@ -110,7 +113,7 @@ const PetDetails = ({ route }) => {
         <View style={styles.itemButtonContainer}>
           <RoundButtonWithImage
             onPress={handleDislike}
-            imageSource={require("../../assets/logos/cross.png")}
+            imageSource={require("@/assets/logos/cross.png")}
             stylesCustom={{
               background: "linear-gradient(90deg, #ff3131, #ff914d)",
               alignSelf: "flex-end",
@@ -121,7 +124,7 @@ const PetDetails = ({ route }) => {
         <View style={styles.itemButtonContainer}>
           <RoundButtonWithImage
             onPress={handleLike}
-            imageSource={require("../../assets/logos/paw-white.png")}
+            imageSource={require("@/assets/logos/paw-white.png")}
             stylesCustom={{
               background: "linear-gradient(90deg, #5de0e6, #004aad)",
               alignSelf: "flex-start",

@@ -7,11 +7,11 @@ import {
     TouchableOpacity,
     View,
 } from "react-native";
-import colors from "../../utils/colors";
-import AntDesign from "react-native-vector-icons/AntDesign";
-import Entypo from "react-native-vector-icons/Entypo";
-import MaterialIcons from "react-native-vector-icons/MaterialIcons";
-import AvatarField from "../../ui/AvatarField";
+import colors from "@/utils/colors";
+import AntDesign from "@expo/vector-icons/AntDesign";
+import Entypo from "@expo/vector-icons/Entypo";
+import MaterialIcons from "@expo/vector-icons/MaterialIcons";
+import AvatarField from "@/ui/AvatarField";
 import { useDispatch, useSelector } from "react-redux";
 import {
     getAuthState,
@@ -19,19 +19,19 @@ import {
     updateLoggedInState,
     updateName,
     updateProfile,
-} from "../../store/auth";
+} from "@/store/auth";
 import deepEqual from "deep-equal";
-import { upldateNotification } from "../../store/notification";
-import catchAsyncError from "../../api/catchError";
+import { upldateNotification } from "@/store/notification";
+import catchAsyncError from "@/api/catchError";
 import {
     Keys,
     getFromAsyncStorage,
     removeFromAsyncStorage,
-} from "../../utils/asyncStorage";
-import { useFetchAvatar } from "../../hooks/query";
-import { Fonts } from "../../utils/fonts";
+} from "@/utils/asyncStorage";
+import { useFetchAvatar } from "@/hooks/query";
+import { Fonts } from "@/utils/fonts";
 import _ from "lodash";
-import client from "../../api/client";
+import client from "@/api/client";
 
 interface Props { }
 interface ProfileInfo {

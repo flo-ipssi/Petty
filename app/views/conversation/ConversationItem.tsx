@@ -1,5 +1,6 @@
 import React, { FC } from "react";
-import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { Image } from 'expo-image';
 import colors from "@/utils/colors";
 import { Fonts } from "@/utils/fonts";
 
